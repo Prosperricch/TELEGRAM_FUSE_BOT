@@ -1,5 +1,5 @@
 import telebot
-from telebot.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
+from telebot.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery, BotCommand
 
 TOKEN = "8336577956:AAHtWI2tsC1o0Ghyd0KdgUyJzp66dNF_tpo"
 bot = telebot.TeleBot(TOKEN)
@@ -21,6 +21,12 @@ def main(message):
     elif command == 'food':
         bot.reply_to(message,
                      f"hi {firstName or 'There'}, Have you tried rice?")
-        
+
+bot.set_my_commands([
+    BotCommand('start', 'this is a command'),
+    BotCommand('drinks', 'select to see drinks'),
+    BotCommand('food', 'select to see food option')
+])
+
 print("Bot started.... Press Ctrl+C to stop")
 bot.infinity_polling()
